@@ -6,3 +6,4 @@ obj
 properties
 appsettings.*
 *.csproj.user
+volumes/shortURL/*

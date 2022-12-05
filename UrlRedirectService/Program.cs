@@ -4,31 +4,16 @@ using UrlRedirectService.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<UrlContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+/* Not using database since this is input output only. The UrlContext stil exists in case we decide that a database is needed in the future. */
+// builder.Services.AddDbContext<UrlContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddGrpc();
 
 var app = builder.Build();
 
-app.MapGet("/{id}", async (string id, UrlContext db) =>
+app.MapGet("/{id}", async (string id) =>
 {
-    var UrlObj = await db.URLs.Where(x => x.nanoid == id).FirstOrDefaultAsync();
-
-    if (UrlObj == null || UrlObj.url == null)
-    {
-        return Results.NotFound();
-    }
-    return Results.Redirect(UrlObj.url);
-});
-
-
-//GRPC
-app.MapGet("/test/{id}", async (string id) =>
-{
-    // Docker Network
     var channel = GrpcChannel.ForAddress("http://urlshortenerapi");
-
-    // var channel = GrpcChannel.ForAddress("https://localhost:52027");
     var client = new GetUrlService.GetUrlServiceClient(channel);
 
     var urlRequest = new UrlRequest
