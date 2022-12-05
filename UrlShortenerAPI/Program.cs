@@ -1,12 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-
+using UrlShortenerAPI.Services;
 using Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<UrlContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// GRPC
+builder.Services.AddGrpc();
+
 var app = builder.Build();
+
+// GRPC
+app.MapGrpcService<UrlService>();
 
 
 string HOSTNAME = app.Environment.IsDevelopment() ? builder.Configuration.GetSection("hostname").Value ?? "http://localhost/" : "http://localhost/";

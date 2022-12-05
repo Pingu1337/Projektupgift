@@ -10,6 +10,7 @@ services:
       dockerfile: UrlShortenerAPI/Dockerfile
     ports:
       - 5227:5227
+      - 52027:52027
 
   urlredirectservice:
     image: urlredirectservice
@@ -18,3 +19,4 @@ services:
       dockerfile: UrlRedirectService/Dockerfile
     ports:
       - 5228:5228
+      - 52028:52028
