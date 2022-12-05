@@ -8,9 +8,10 @@ builder.Services.AddDbContext<UrlContext>(opt => opt.UseSqlServer(builder.Config
 
 var app = builder.Build();
 
-string HOSTNAME = app.Environment.IsDevelopment() ? "http://localhost:5227/" : "http://localhost/";
 
-URLshort shorter = new URLshort();
+string HOSTNAME = app.Environment.IsDevelopment() ? builder.Configuration.GetSection("hostname").Value ?? "http://localhost/" : "http://localhost/";
+
+URLshort shorter = new();
 
 app.MapGet("/{id}", (string id) =>
 {
