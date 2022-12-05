@@ -8,6 +8,8 @@ builder.Services.AddDbContext<UrlContext>(opt => opt.UseSqlServer(builder.Config
 
 var app = builder.Build();
 
+string HOSTNAME = app.Environment.IsDevelopment() ? "http://localhost:5227/" : "http://localhost/";
+
 URLshort shorter = new URLshort();
 
 app.MapGet("/{id}", (string id) =>
@@ -23,7 +25,7 @@ app.MapPost("/shorten", async (URL? url, UrlContext db) =>
         return Results.BadRequest();
     }
 
-    var shortURL = await shorter.shorten(url.url, db);
+    var shortURL = await shorter.shorten(url.url, HOSTNAME, db);
     return Results.Ok(shortURL);
 
 });
