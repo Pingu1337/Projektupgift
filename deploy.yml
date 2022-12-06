@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   urlshortenerapi:
-    image: urlshortenerapi
+    image: vctrhub.azurecr.io/urlshortenerapi
     container_name: urlshortenerapi
     restart: always
     ports:
@@ -10,14 +10,14 @@ services:
       - 3001:123
 
   urlredirectservice:
-    image: urlredirectservice
+    image: vctrhub.azurecr.io/urlredirectservice
     container_name: urlredirectservice
     restart: always
     ports:
       - 3002:80
 
   loginservice:
-    image: loginservice
+    image: vctrhub.azurecr.io/loginservice
     container_name: loginservice
     restart: always
     ports:
