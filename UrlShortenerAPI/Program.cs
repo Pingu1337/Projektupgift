@@ -56,11 +56,6 @@ string HOSTNAME = builder.Configuration.GetSection("host_url").Value ?? "http://
 
 URLshort shorter = new();
 
-app.MapGet("/{id}", (string id) =>
-{
-    return Results.Ok(id);
-});
-
 
 app.MapPost("/shorten", [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] async (URL? url, UrlContext db) =>
 {
