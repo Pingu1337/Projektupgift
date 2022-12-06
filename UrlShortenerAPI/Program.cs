@@ -52,7 +52,7 @@ app.UseAuthorization();
 app.MapGrpcService<UrlService>();
 
 
-string HOSTNAME = app.Environment.IsDevelopment() ? builder.Configuration.GetSection("host_url").Value ?? "https://localhost/" : "https://localhost/";
+string HOSTNAME = builder.Configuration.GetSection("host_url").Value ?? "http://localhost/";
 
 URLshort shorter = new();
 

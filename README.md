@@ -19,4 +19,7 @@
 - `cd UrlRedirectService`
 - - `docker build . -t urlredirectservice`
 - - `cd ../`
+- `cd LoginService`
+- - `docker build . -t loginservice`
+- - `cd ../`
 - `docker-compose -f deploy.yml up`

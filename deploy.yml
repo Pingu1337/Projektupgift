@@ -6,31 +6,17 @@ services:
     container_name: urlshortenerapi
     restart: always
     environment:
-      ASPNETCORE_Kestrel__Certificates__Default__Password: 'secret'
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: https://+:52027;http://+:5227
-      ASPNETCORE_HTTPS_PORT: 52027
-    volumes:
-      - ./volumes/certificates/.aspnet/https:/https/
+      ASPNETCORE_URLS: http://+:5227
     ports:
       - 5227:5227
       - 52027:52027
-    depends_on:
-      - shorturldb
 
   urlredirectservice:
     image: urlredirectservice
     container_name: urlredirectservice
     restart: always
     environment:
-      ASPNETCORE_Kestrel__Certificates__Default__Password: 'secret'
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: https://+:52028;http://+:5228
-      ASPNETCORE_HTTPS_PORT: 52028
-    volumes:
-      - ./volumes/certificates/.aspnet/https:/https/
+      ASPNETCORE_URLS: http://+:5228
     ports:
       - 5228:5228
       - 52028:52028
@@ -40,13 +26,7 @@ services:
     container_name: loginservice
     restart: always
     environment:
-      ASPNETCORE_Kestrel__Certificates__Default__Password: 'secret'
-      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: https://+:52029;http://+:5229
-      ASPNETCORE_HTTPS_PORT: 52029
-    volumes:
-      - ./volumes/certificates/.aspnet/https:/https/
+      ASPNETCORE_URLS: http://+:5229
     ports:
       - 5229:5229
       - 52029:52029
