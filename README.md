@@ -8,7 +8,7 @@
 
 ## **TODO:**
 
-- [ ] find better solution for the https certificate stuff in deploy.yml
+- [x] find better solution for the https certificate stuff in deploy.yml
 - [ ] implement JWT auth
 
 ## Commands
