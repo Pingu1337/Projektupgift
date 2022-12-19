@@ -4,6 +4,6 @@ node_modules
 bin
 obj
 properties
-appsettings.*
 *.csproj.user
 volumes/shortURL/*
+volumes/userDB/*
